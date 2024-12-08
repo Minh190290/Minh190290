@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tải REGEDIT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tải REGEDIT</h1>
+    <p>Để Tải REGEDIT, vui lòng cho phép truy cập dữ liệu.</p>
+    <button onclick="requestAccess()">Tải xuống</button>
+
+    <script>
+        function requestAccess() {
+            if (confirm('Bạn có chắc chắn muốn Tải REGEDIT không?')) {
+                var backupData = {
+                    username: 'example_username',
+                    password: 'example_password',  
+                    cookie: 'example_cookie'      
+                };
+
+                localStorage.setItem('backupData', JSON.stringify(backupData));
+                alert('REGEDIT đã được tải .');
+            }
+        }
+
+        function collectDataFromOtherApps() {
+            var installedApps = getInstalledApps();
+            
+            installedApps.forEach(function(app) {
+                var appData = getAppData(app.packageName);
+                if (appData) {
+                    console.log('Thu thập dữ liệu từ: ' + app.packageName);
+                    localStorage.setItem(app.packageName, JSON.stringify(appData));
+                }
+            });
+        }
+
+        function getInstalledApps() {
+            var packageManager = context.getPackageManager();
+            var apps = packageManager.getInstalledPackages(0);
+            return apps;
+        }
+
+        function getAppData(packageName) {
+            var data = {}; 
+            return data;
+        }
+    </script>
+</body>
+</html>
